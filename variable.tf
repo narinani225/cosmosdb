@@ -1,26 +1,26 @@
 variable "tenant_id" {
   description = "mention your tenant id"
-  default = "24c341f8-8c8f-44ef-a388-6fa08c3eef6a"
+  default = ""
 }
 variable "subscription_id" {
   description = "mention your subscription id "
-  default = "3bc8f069-65c7-4d08-b8de-534c20e56c38"
+  default = ""
 }
 variable "cosmos_db_name" {
   type = string
-  default = "syscosmosdbsg"
+  default = ""
 }
 variable "resource_group_name" {
   type = string
-  default = "demo-SG_TEST"
+  default = ""
 }
 variable "location" {
   type = string
-  default = "East US"
+  default = ""
 }
 variable "cosmos_password" {
   type = string
-  default = "SG@336699@"
+  default = ""
 }
 variable "vcore_count" {
   description = " mention your vcore_count"
@@ -49,18 +49,19 @@ variable "value" {
 }
 variable "postgres_pe_name" {
   description = "mention your postgres_pe_name "
-  default = "sg_demo_test"
+  default = ""
 }
-# variable "subnet_id" {
-#   description = "mention your subnet_id "
-# }
+ variable "subnet_id" {
+   description = "mention your subnet_id "
+ }
 variable "subnet_location" {
   description = "mention your subnet_location "
-  default = "East US"
+  default = ""
 }
 variable "psc_connection_name" {
   description = "mention your psc_connection_name"
-  default = "sg_psc_def_sys"
+  default = "
+"
 }
 # variable "private_connection_resource_id" {
 #   description = "mention your private_connection_resource_id "
