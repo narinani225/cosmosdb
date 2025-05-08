@@ -15,21 +15,10 @@ provider "azurerm" {
   skip_provider_registration = true
 }
 
-resource "azurerm_resource_group" "example" {
-  name     = var.resource_group_name
-  location = var.location
-}
-data "azurerm_subnet" "demo_subnet" {
-  name                 = "Orange"          # Replace with your subnet name
-  virtual_network_name = "Apple-vnet"            # Replace with your virtual network name
-  resource_group_name  = "Amboge" # Link to the existing resource group
-}
-
 
 # Create a Cosmos DB PostgreSQL Cluster
 resource "azurerm_cosmosdb_postgresql_cluster" "cosmos_db" {
   name                            = var.cosmos_db_name
-  depends_on = [ azurerm_resource_group.example ]
   resource_group_name             = var.resource_group_name
   location                        = var.location
   administrator_login_password    = var.cosmos_password
@@ -65,12 +54,12 @@ resource "azurerm_private_endpoint" "postgres_private_endpoint" {
   name                = var.postgres_pe_name
   location            = var.subnet_location  #var.subnet_location
   resource_group_name = var.resource_group_name
-  subnet_id           = data.azurerm_subnet.demo_subnet.id
+  subnet_id           = var.subnet_id
 
 
   private_service_connection {
     name                           = var.psc_connection_name
-    private_connection_resource_id = azurerm_cosmosdb_postgresql_cluster.cosmos_db.id #var.private_connection_resource_id
+    private_connection_resource_id = azurerm_cosmosdb_postgresql_cluster.cosmos_db.id 
     is_manual_connection           = var.is_manual_connection
     subresource_names              = var.subresource_names
 }
